@@ -1,19 +1,32 @@
-FROM python
+FROM python:3.11.3-alpine3.18
 
-COPY ./requirements.txt /requirements.txt
+ENV PYTHONDOWNTWRITEBYTECODE 1
 
-RUN apk add --update --no-cache postgresql-client
+ENV PYTHONUNBUFFERED 1
 
-RUN apk add --update --no-cache --virtual .tmp-build-deps \
-	gcc libc-dev linux-headers postgresql-dev
-RUN pip install -r /requirements.txt
+COPY dolar_project /dolar_project
+COPY scripts /scripts
 
-RUN apk del .tmp-build-deps
+WORKDIR /dolar_project
 
-RUN mkdir /app
+EXPOSE 8000
 
-WORKDIR /app
+RUN python -m venv /venv && \
+  /venv/bin/pip install --upgrade pip && \
+  /venv/bin/pip install -r /djangoapp/requirements.txt && \
+  adduser --disabled-password --no-create-home duser && \
+  mkdir -p /data/web/static && \
+  mkdir -p /data/web/media && \
+  chown -R duser:duser /venv && \
+  chown -R duser:duser /data/web/static && \
+  chown -R duser:duser /data/web/media && \
+  chmod -R 755 /data/web/static && \
+  chmod -R 755 /data/web/media && \
+  chmod -R +x /scripts
 
-COPY dolar_project /app
 
-COPY .venv /app
+ENV PATH="/scripts:/venv/bin:$PATH"
+
+USER duser
+
+CMD ["commands.sh"]
