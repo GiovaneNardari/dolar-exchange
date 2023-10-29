@@ -1,0 +1,88 @@
+*, *:after{
+    margin: 0;
+    padding: 0;
+    block-size: 0;
+    text-decoration: 0;
+    width: auto;
+    height: auto;
+    font-family:'Bahnschrift Light';
+}
+
+body{
+    width: 100%;
+    height: auto;
+    background-color: #0D1321;
+}
+
+.container-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.header{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    margin: 50px;
+    padding-top: 50px;
+}
+
+hr.header-hr{
+    border: 1px solid white;
+    height: 0.1px;
+    padding: 0;
+}
+
+.header-title{
+    font-size: 50px;
+    text-decoration: underline;
+    background: -webkit-linear-gradient(#FFEDDF, #C5D86D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: solid #000 0.5;    
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;                  
+    overflow: hidden;
+    background-color: #FFEDDF;
+    margin-top: 50px;
+    border-radius: 10px;
+    text-align: center;    
+    align-items: center;
+    justify-content: center;
+
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 2rem;
+}
+
+.container-table{
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px;
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+.item1{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+
+.item2{
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.item3{
+    grid-column: 1 / span 2;
+    grid-row: 2;
+}
