@@ -7,7 +7,7 @@ while ! nc -z $POSTGRES_HOST $POSTGRES_PORT; do
   sleep 2
 done
 
-echo "✅ Postgres Database Started Successfully ($POSTGRES_HOST:$POSTGRES_PORT)"
+echo "✅ Successfully Connected to Postgres Database ($POSTGRES_HOST:$POSTGRES_PORT)"
 
 python manage.py collectstatic --noinput
 python manage.py makemigrations --noinput
