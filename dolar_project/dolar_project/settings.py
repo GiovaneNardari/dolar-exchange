@@ -127,6 +127,8 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = DATA_DIR / 'static'
 
+STATICFILES_DIRS = [BASE_DIR / 'dashboard' / 'static']
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = DATA_DIR / 'media' 
