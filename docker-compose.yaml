@@ -8,18 +8,9 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ./dolar_project:/dolar_project
-    env_file:
-      - ./dotenv_files/.env
-    depends_on:
-      - psql
-  psql:
-    container_name: psql
-    image: postgres:13-alpine
-    volumes:
-      - postgre_data:/var/lib/postgresql/data/
+      - django_data:/dolar_project
     env_file:
       - ./dotenv_files/.env
 
 volumes:
-  postgre_data:
+  django_data:
