@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  dolar_project:
+    container_name: dolar-exchange
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./dolar_project:/dolar_project
+    env_file:
+      - ./dotenv_files/.env
+    depends_on:
+      - psql
+  psql:
+    container_name: psql
+    image: postgres:13-alpine
+    volumes:
+      - postgre_data:/var/lib/postgresql/data/
+    env_file:
+      - ./dotenv_files/.env
+
+volumes:
+  postgre_data:

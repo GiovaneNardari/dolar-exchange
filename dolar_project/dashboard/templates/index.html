@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ dados.title }}</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+
+    </style>
+</head>
+<body>
+    <div class="container-header">
+
+        <div class="header">
+            <span class="header-title">
+                Dolar Exchange
+            </span>
+            <hr class="header-hr">
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="container-table item1">
+            <table class="tabela1">
+                <span class="tabela-title">Tabela de Preços do Dólar</span>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for preco in precos %}
+                            <tr>
+                                <td>{{ preco.data }}</td>
+                                <td>{{ preco.valor }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="2">Nenhum dado disponível.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="container-table item2">
+            <table class="tabela2">
+                <span class="tabela-title">Tabela de Preços do Dólar</span>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for preco in precos %}
+                            <tr>
+                                <td>{{ preco.data }}</td>
+                                <td>{{ preco.valor }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="2">Nenhum dado disponível.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="container-table item3">
+            <table class="tabela3">
+                <span class="tabela-title">Tabela de Preços do Dólar</span>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for preco in precos %}
+                            <tr>
+                                <td>{{ preco.data }}</td>
+                                <td>{{ preco.valor }}</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="2">Nenhum dado disponível.</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+<!--
+    <h1>{{ dados.heading }}</h1>
+    <ul>
+        {% for item in dados.items %}
+            <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Dados do Dólar:</h2>
+    <ul>
+        {% for dado in dados_dolar %}
+            <li>Data: {{ dado.date_time }}, Valor: {{ dado.value }}</li>
+        {% empty %}
+            <li>Nenhum dado disponível.</li>
+        {% endfor %}
+    </ul>
+-->
+</body>
+</html>
