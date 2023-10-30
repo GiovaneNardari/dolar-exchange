@@ -22,8 +22,9 @@
 
     <div class="container">
         <div class="container-table item1">
-            <table class="tabela1">
-                <span class="tabela-title">Tabela de Preços do Dólar</span>
+            <table class="tabela">
+                <span class="tabela-title">Tabela de Preços
+            do Dólar</span>
                     <thead>
                         <tr>
                             <th>Data</th>
@@ -31,10 +32,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for preco in precos %}
+                        {% for dado in dolar_primeiros %}
                             <tr>
-                                <td>{{ preco.data }}</td>
-                                <td>{{ preco.valor }}</td>
+                                <td class="cell">{{ dado.date_registered }}</td>
+                                <td class="cell">{{ dado.price|floatformat:3 }}</td>
                             </tr>
                         {% empty %}
                             <tr>
@@ -46,19 +47,20 @@
         </div>
 
         <div class="container-table item2">
-            <table class="tabela2">
-                <span class="tabela-title">Tabela de Preços do Dólar</span>
+            <table class="tabela">
+                <span class="tabela-title">Descrição 
+do banco</span>
                     <thead>
                         <tr>
-                            <th>Data</th>
+                            <th>Estatística</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for preco in precos %}
+                        {% for chave, valor in dolar_describe.items %}
                             <tr>
-                                <td>{{ preco.data }}</td>
-                                <td>{{ preco.valor }}</td>
+                                <td class="cell">{{ chave }}</td>
+                                <td class="cell">{{ valor }}</td>
                             </tr>
                         {% empty %}
                             <tr>
@@ -70,8 +72,8 @@
         </div>
 
         <div class="container-table item3">
-            <table class="tabela3">
-                <span class="tabela-title">Tabela de Preços do Dólar</span>
+            <table class="tabela">
+                <span class="tabela-title">Time Series</span>
                     <thead>
                         <tr>
                             <th>Data</th>
@@ -93,23 +95,5 @@
             </table>
         </div>
     </div>
-
-<!--
-    <h1>{{ dados.heading }}</h1>
-    <ul>
-        {% for item in dados.items %}
-            <li>{{ item }}</li>
-        {% endfor %}
-    </ul>
-
-    <h2>Dados do Dólar:</h2>
-    <ul>
-        {% for dado in dados_dolar %}
-            <li>Data: {{ dado.date_time }}, Valor: {{ dado.value }}</li>
-        {% empty %}
-            <li>Nenhum dado disponível.</li>
-        {% endfor %}
-    </ul>
--->
 </body>
 </html>
