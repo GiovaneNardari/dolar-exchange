@@ -125,13 +125,19 @@ hr.header-hr{
     font-size: 80px;
     font-weight: bold;
     color: #C5D86D;
-    width: 100%;
     transform: rotate(-90deg);
     text-align: justify;
     white-space: pre;
+    flex-grow: 1;
 }
 
 .cell {
     text-align: center; /* Ou outro alinhamento desejado */
     color: #C5D86D;
+}
+
+.dashboard {
+    width: 100%;
+    height: 100%;
+    flex-grow: 10;
 }
