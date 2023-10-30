@@ -2,22 +2,12 @@ from django.shortcuts import render
 from .fetch_data import fetch_data_from_api
 from .models import DolarPrice
 import pandas as pd
-import psycopg2
-import os
 
-HOST = os.getenv('POSTGRES_HOST', 'None')
-PORT = os.getenv('POSTGRES_PORT', 'None')
-USER = os.getenv('POSTGRES_USER', 'None')
-PASSWORD = os.getenv('POSTGRES_PASSWORD', 'None')
-DB = os.getenv('POSTGRES_DB', 'None')
 TABLE = 'dashboard_dolarprice'
-
-conn_string = f"host='{HOST}' port='{PORT}' dbname='{DB}' user='{USER}' password='{PASSWORD}'"
-connection = psycopg2.connect(conn_string)
 
 # Create your views here.
 def index(request):
-    fetch_data_from_api(connection, TABLE)
+    fetch_data_from_api(TABLE)
     dados = {"title": "Dolar Project"}
 
     dolar_prices = DolarPrice.objects.all()

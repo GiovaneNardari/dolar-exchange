@@ -1,8 +1,18 @@
 from datetime import datetime, date
 import pandas as pd
 import requests
+import psycopg2
+import os
 
-def fetch_data_from_api(conn, table):
+HOST = os.getenv('POSTGRES_HOST', 'None')
+PORT = os.getenv('POSTGRES_PORT', 'None')
+USER = os.getenv('POSTGRES_USER', 'None')
+PASSWORD = os.getenv('POSTGRES_PASSWORD', 'None')
+DB = os.getenv('POSTGRES_DB', 'None')
+
+def fetch_data_from_api(table):
+    conn_string = f"host='{HOST}' port='{PORT}' dbname='{DB}' user='{USER}' password='{PASSWORD}'"
+    conn = psycopg2.connect(conn_string)
     db_cursor = conn.cursor()
 
     db_cursor.execute("SELECT * FROM dashboard_dolarprice ORDER BY date_registered DESC LIMIT 1")

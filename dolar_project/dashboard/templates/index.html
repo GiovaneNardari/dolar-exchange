@@ -74,24 +74,7 @@ do banco</span>
         <div class="container-table item3">
             <table class="tabela">
                 <span class="tabela-title">Time Series</span>
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for preco in precos %}
-                            <tr>
-                                <td>{{ preco.data }}</td>
-                                <td>{{ preco.valor }}</td>
-                            </tr>
-                        {% empty %}
-                            <tr>
-                                <td colspan="2">Nenhum dado disponível.</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
+                <iframe width="80%" height="100%" src="https://lookerstudio.google.com/embed/reporting/3f7e45ef-e617-49c2-bcd1-9f83e13f47bf/page/VBrgD" frameborder="0" style="border:0" allowfullscreen></iframe>
             </table>
         </div>
     </div>
