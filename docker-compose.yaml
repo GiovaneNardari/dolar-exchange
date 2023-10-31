@@ -8,7 +8,6 @@ services:
     ports:
       - 8000:8000
     volumes:
-      #- ./dolar_project:/dolar_project
       - django_data:/dolar_project
     env_file:
       - ./dotenv_files/.env
@@ -21,8 +20,8 @@ services:
     restart: unless-stopped
     ports:
       - 3000:3000
-    env_file:
-      - ./dotenv_files/.env
+    environment:
+      - GF_SECURITY_ALLOW_EMBEDDING=true
     volumes:
       - grafana-storage:/var/lib/grafana
 

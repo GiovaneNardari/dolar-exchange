@@ -12,10 +12,15 @@ body{
     width: 100%;
     height: auto;
     background-color: #0D1321;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .container-header{
     width: 100%;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,6 +34,7 @@ body{
     height: 100%;
     display: grid;
     margin: 50px;
+    margin-top: 0;
     padding-top: 50px;
 }
 
@@ -47,97 +53,21 @@ hr.header-hr{
     border: solid #000 0.5;    
 }
 
-.container{
-    width: 90%;
-    margin: 0 auto;                  
-    overflow: hidden;
-    background-color: #0D1321;
-    margin-top: 50px;
-    border-radius: 10px;
-    text-align: center;    
-    align-items: center;
-    justify-content: center;
-
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 2rem;
-}
-
-.container-table{
+.container-dashboard{
     background-color: #304678;
-    text-align: center;
-    padding: 20px;
-    font-size: 30px;
     border-radius: 10px;
-    width: auto;    
-    height: 670px;
+    padding: 20px;
+    width: 92%;    
+    flex: 2;
+}
+
+.container-dashboard-child{
     display: flex;
-    justify-content: center;
     align-items: center;
-}
-
-.item1{
-    grid-row: 1;
-    grid-column: 1;
-}
-
-
-.item2{
-    grid-row: 1;
-    grid-column: 2;
-}
-
-.item3{
-    grid-column: 1 / span 2;
-    grid-row: 2;
-}
-
-.tabela {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.tabela th, .tabela td {
-    border-top: 1px solid #dddddd;
-    padding: 8px;
-    color: #C5D86D;
-}
-
-.tabela th:first-child,
-.tabela td:first-child {
-    border-left: none; /* Remove a borda esquerda para a primeira coluna */
-}
-
-.tabela th:last-child,
-.tabela td:last-child {
-    border-right: none; /* Remove a borda direita para a última coluna */
-}
-
-.tabela td:nth-child(1) {
-    border-right: 1px solid #dddddd; /* Adiciona uma linha à direita para a primeira coluna */
-}
-
-.tabela td:nth-child(2) {
-    border-left: 1px solid #dddddd; /* Adiciona uma linha à esquerda para a segunda coluna */
-}
-
-.tabela-title {
-    font-size: 80px;
-    font-weight: bold;
-    color: #C5D86D;
-    transform: rotate(-90deg);
-    text-align: justify;
-    white-space: pre;
-    flex-grow: 1;
-}
-
-.cell {
-    text-align: center; /* Ou outro alinhamento desejado */
-    color: #C5D86D;
+    justify-content: center;
 }
 
 .dashboard {
     width: 100%;
-    height: 100%;
-    flex-grow: 10;
+    height: 800px;
 }

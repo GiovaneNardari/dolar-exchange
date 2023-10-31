@@ -10,69 +10,15 @@
 </head>
 <body>
     <div class="container-header">
-
         <div class="header">
             <span class="header-title">
                 Dolar Exchange
             </span>
             <hr class="header-hr">
         </div>
-
     </div>
-
-    <div class="container">
-        <div class="container-table item1">
-            <table class="tabela">
-                <span class="tabela-title">Tabela de Preços
-            do Dólar</span>
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for dado in dolar_primeiros %}
-                            <tr>
-                                <td class="cell">{{ dado.date_registered }}</td>
-                                <td class="cell">{{ dado.price|floatformat:3 }}</td>
-                            </tr>
-                        {% empty %}
-                            <tr>
-                                <td colspan="2">Nenhum dado disponível.</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-            </table>
-        </div>
-
-        <div class="container-table item2">
-            <table class="tabela">
-                <span class="tabela-title">Descrição 
-do banco</span>
-                    <thead>
-                        <tr>
-                            <th>Estatística</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for chave, valor in dolar_describe.items %}
-                            <tr>
-                                <td class="cell">{{ chave }}</td>
-                                <td class="cell">{{ valor }}</td>
-                            </tr>
-                        {% empty %}
-                            <tr>
-                                <td colspan="2">Nenhum dado disponível.</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-            </table>
-        </div>
-
-        <div class="container-table item3">
-            <div class="tabela-title">Time Series</div>
+    <div class="container-dashboard">
+        <div class="container-dashboard-child">
             <iframe class="dashboard" src="http://localhost:3000/public-dashboards/842af9f116674016b2b9e51bfdb142a1" height="100%", width="100%"></iframe>
         </div>
     </div>
