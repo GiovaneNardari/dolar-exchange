@@ -8,6 +8,8 @@ COPY dolar_project /dolar_project
 
 COPY scripts /scripts
 
+COPY dotenv_files/.env /dolar_project/.env
+
 WORKDIR /dolar_project
 
 EXPOSE 8000

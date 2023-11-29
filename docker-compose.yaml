@@ -1,8 +1,8 @@
 version: '3.9'
 
 services:
-  dolar_project:
-    container_name: dolar-exchange
+  dolarproject:
+    container_name: dolarProject
     build:
       context: .
     ports:

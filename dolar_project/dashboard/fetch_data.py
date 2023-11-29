@@ -1,4 +1,6 @@
 from datetime import datetime, date
+from prophet import Prophet
+from propeht.serialize import model_to_json
 import pandas as pd
 import requests
 import psycopg2
@@ -9,6 +11,16 @@ PORT = os.getenv('POSTGRES_PORT', 'None')
 USER = os.getenv('POSTGRES_USER', 'None')
 PASSWORD = os.getenv('POSTGRES_PASSWORD', 'None')
 DB = os.getenv('POSTGRES_DB', 'None')
+
+def train_prophet(data: pd.DataFrame) -> None:
+    model = Prophet()
+    model.fit(data)
+    with open('serialized_model.json', 'w') as model_archive:
+        model_archive.write(model_to_json(model))
+
+def train_models(data: list) -> None:
+    df_prophet = pd.DataFrame(data, columns =['ds', 'y'])
+    train_prophet(df_prophet)
 
 def fetch_data_from_api(table):
     conn_string = f"host='{HOST}' port='{PORT}' dbname='{DB}' user='{USER}' password='{PASSWORD}'"
@@ -51,8 +63,15 @@ def fetch_data_from_api(table):
     df_filtered.apply(lambda row: db_cursor.execute(
             f"INSERT INTO {table} (date_registered, price) VALUES (%s, %s)",
             (row['date'], row['value'])
-        ), axis = 1)
-    
+        ), axis=1)
+
     conn.commit()
+
+    if outdated_days > 0:
+        train_data_query = f"SELECT date_registered, price FROM dashboard_dolarprice ORDER BY date_registered DESC LIMIT {365*5}"
+        db_cursor.execute(train_data_query)
+        query_result = db_cursor.fetchall()
+        train_models(query_result)
+
     db_cursor.close()
     conn.close()

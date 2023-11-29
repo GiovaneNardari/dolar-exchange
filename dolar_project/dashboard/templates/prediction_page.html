@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ dados.title }}</title>
+    {% load static %}
+    <link href="../static/css/style.css" rel="stylesheet" type="text/css">
+    <style type="text/css"></style>
+</head>
+<body>
+        {%for pred in dados.prediction_result%}
+        <p>{{pred[0]}} | {{pred[1]}}</p>
+        {%endfor%}
+
+        <img src="{%dados.image_path%}">
+</body>
+</html>
