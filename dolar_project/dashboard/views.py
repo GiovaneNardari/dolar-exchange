@@ -18,7 +18,7 @@ def prediction_page(request):
     prediction, img_path = predict_from_model()
 
     contexto = {
-        "dados": {"title": "Dolar Project", "prediction_result": prediction.values, "image_path": img_path}
+        "dados": {"title": "Dolar Project", "prediction_result": prediction, "image_path": img_path}
     }
 
     return render(request, "prediction_page.html", contexto)

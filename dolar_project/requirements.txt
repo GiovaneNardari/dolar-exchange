@@ -6,5 +6,6 @@ psycopg2-binary
 pandas
 requests
 django-cors-headers
-prophet
 matplotlib
+statsmodels
+pickle

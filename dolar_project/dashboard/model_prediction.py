@@ -1,5 +1,4 @@
-from prophet import Prophet
-from propeht.serialize import model_from_json
+from statsmodels.iolib.smpickle import load_pickle
 import pandas as pd
 import psycopg2
 import matplotlib.pyplot as plt
@@ -12,12 +11,7 @@ PASSWORD = os.getenv('POSTGRES_PASSWORD', 'None')
 DB = os.getenv('POSTGRES_DB', 'None')
 
 def predict_from_model():
-    with open('serialized_model.json', 'r') as model_archive:
-        model = model_from_json(model_archive.read())
-
-    future = model.make_future_dataframe(periods=14)
-    forecast = model.predict(future)
-    forecast = forecast.tail(14)
+    model = load_pickle('serialized_model.pickle')
 
     conn_string = f"host='{HOST}' port='{PORT}' dbname='{DB}' user='{USER}' password='{PASSWORD}'"
     conn = psycopg2.connect(conn_string)
@@ -25,10 +19,11 @@ def predict_from_model():
     db_cursor.execute("SELECT date_registered, price FROM dashboard_dolarprice ORDER BY date_registered DESC LIMIT 60")
     data = db_cursor.fetchall()
     
-    df_true = pd.DataFrame(data, columns=["ds", "y"])
-
-    plt.plot(forecast[["ds", "y"]])
+    df_true = pd.DataFrame(data, columns=['date_registered', 'price'])
+    forecast = model.forecast(14)
+    
     plt.plot(df_true)
+    plt.plot(forecast)
     plot_image_path = "static/images/plot01.png"
     plt.savefig(plot_image_path)
 

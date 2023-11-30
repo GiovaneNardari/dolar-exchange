@@ -1,6 +1,5 @@
 from datetime import datetime, date
-from prophet import Prophet
-from propeht.serialize import model_to_json
+from statsmodels.tsa.api import Holt
 import pandas as pd
 import requests
 import psycopg2
@@ -12,15 +11,11 @@ USER = os.getenv('POSTGRES_USER', 'None')
 PASSWORD = os.getenv('POSTGRES_PASSWORD', 'None')
 DB = os.getenv('POSTGRES_DB', 'None')
 
-def train_prophet(data: pd.DataFrame) -> None:
-    model = Prophet()
-    model.fit(data)
-    with open('serialized_model.json', 'w') as model_archive:
-        model_archive.write(model_to_json(model))
-
-def train_models(data: list) -> None:
-    df_prophet = pd.DataFrame(data, columns =['ds', 'y'])
-    train_prophet(df_prophet)
+def train_model(data: list) -> None:
+    df_holt = pd.DataFrame(data, columns =['date_registered', 'price'])
+    df_holt.set_index('date_registered', inplace=True)
+    holt = Holt(df_holt.price).fit(optimized=True)
+    holt.save('serialized_model.pickle')
 
 def fetch_data_from_api(table):
     conn_string = f"host='{HOST}' port='{PORT}' dbname='{DB}' user='{USER}' password='{PASSWORD}'"
@@ -71,7 +66,7 @@ def fetch_data_from_api(table):
         train_data_query = f"SELECT date_registered, price FROM dashboard_dolarprice ORDER BY date_registered DESC LIMIT {365*5}"
         db_cursor.execute(train_data_query)
         query_result = db_cursor.fetchall()
-        train_models(query_result)
+        train_model(query_result)
 
     db_cursor.close()
     conn.close()

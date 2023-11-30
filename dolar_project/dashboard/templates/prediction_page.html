@@ -8,7 +8,7 @@
 </head>
 <body>
         {%for pred in dados.prediction_result%}
-        <p>{{pred[0]}} | {{pred[1]}}</p>
+        <p>{{pred}}</p>
         {%endfor%}
 
         <img src="{%dados.image_path%}">
