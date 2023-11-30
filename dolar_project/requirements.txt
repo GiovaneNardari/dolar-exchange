@@ -8,4 +8,3 @@ requests
 django-cors-headers
 matplotlib
 statsmodels
-pickle
