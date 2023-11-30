@@ -14,7 +14,7 @@ WORKDIR /dolar_project
 
 EXPOSE 8000
 
-RUN apt-get install -y python-dev && \
+RUN apt install -y python-dev && \
   apt install -y g++ && \
   python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
