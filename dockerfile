@@ -14,8 +14,8 @@ WORKDIR /dolar_project
 
 EXPOSE 8000
 
-RUN apk add --no-cache --virtual .build-deps g++ python3-dev libffi-dev openssl-dev && \
-  apk add --no-cache --update python3 && \
+RUN apk add --no-cache --virtual .build-deps g++ python-dev libffi-dev openssl-dev && \
+  apk add --no-cache --update python && \
   python -m venv /venv && \
   /venv/bin/pip install pendulum service_identity && \
   /venv/bin/pip install --upgrade pip && \
