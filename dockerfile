@@ -14,8 +14,8 @@ WORKDIR /dolar_project
 
 EXPOSE 8000
 
-RUN sudo apt-get install -y python-dev && \
-  sudo apt install -y g++ && \
+RUN apt-get install -y python-dev && \
+  apt install -y g++ && \
   python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
   /venv/bin/pip install -r /dolar_project/requirements.txt && \
