@@ -14,8 +14,7 @@ WORKDIR /dolar_project
 
 EXPOSE 8000
 
-RUN apt install -y python-dev && \
-  apt install -y g++ && \
+RUN apk add --no-cache --virtual .build-deps g++ python3-dev && \
   python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
   /venv/bin/pip install -r /dolar_project/requirements.txt && \
