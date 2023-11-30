@@ -14,7 +14,9 @@ WORKDIR /dolar_project
 
 EXPOSE 8000
 
-RUN python -m venv /venv && \
+RUN sudo apt-get install -y python-dev && \
+  sudo apt install -y g++ && \
+  python -m venv /venv && \
   /venv/bin/pip install --upgrade pip && \
   /venv/bin/pip install -r /dolar_project/requirements.txt && \
   adduser --disabled-password --no-create-home dolar_project_admin && \
