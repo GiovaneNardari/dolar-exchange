@@ -1,7 +1,7 @@
 from datetime import datetime, date
 from statsmodels.tsa.api import Holt
-from statsmodels.iolib.smpickle import save_pickle
 import pandas as pd
+import pickle
 import requests
 import psycopg2
 import os
@@ -16,7 +16,8 @@ def train_model(data: list) -> None:
     df_holt = pd.DataFrame(data, columns =['date_registered', 'price'])
     df_holt.set_index('date_registered', inplace=True)
     holt = Holt(df_holt.price).fit(optimized=True)
-    holt.save_pickle('serialized_model.pickle')
+    with open('serialized_model.pkl', 'wb') as model_file: 
+        pickle.dump(holt, model_file)
 
 def fetch_data_from_api(table):
     conn_string = f"host='{HOST}' port='{PORT}' dbname='{DB}' user='{USER}' password='{PASSWORD}'"

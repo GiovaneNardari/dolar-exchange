@@ -11,7 +11,8 @@ PASSWORD = os.getenv('POSTGRES_PASSWORD', 'None')
 DB = os.getenv('POSTGRES_DB', 'None')
 
 def predict_from_model():
-    model = load_pickle('serialized_model.pickle')
+    with open('serialized_model.pkl', 'rb') as model_file:
+        model = pickle.load(model_file)
 
     conn_string = f"host='{HOST}' port='{PORT}' dbname='{DB}' user='{USER}' password='{PASSWORD}'"
     conn = psycopg2.connect(conn_string)
