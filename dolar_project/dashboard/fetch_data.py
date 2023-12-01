@@ -22,7 +22,7 @@ def fetch_data_from_api(table):
     conn = psycopg2.connect(conn_string)
     db_cursor = conn.cursor()
 
-    db_cursor.execute("SELECT * FROM dashboard_dolarprice ORDER BY date_registered DESC LIMIT 1")
+    db_cursor.execute("SELECT price, date_registered FROM dashboard_dolarprice ORDER BY date_registered DESC LIMIT 1")
     last_registry_date = db_cursor.fetchone()[1]
     today = date.today()
 
