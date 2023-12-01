@@ -15,8 +15,8 @@ class Migration(migrations.Migration):
             name='DolarPrice',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('value', models.FloatField()),
-                ('date_time', models.DateTimeField()),
+                ('price', models.FloatField(blank=True, default=0)),
+                ('date_registered', models.DateField(blank=True, default=dashboard.models.get_current_date)),
             ],
         ),
     ]
