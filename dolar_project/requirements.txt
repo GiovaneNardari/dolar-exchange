@@ -8,4 +8,4 @@ requests
 django-cors-headers
 matplotlib
 statsmodels
-sklearn
+scikit-learn
