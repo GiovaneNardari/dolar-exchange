@@ -23,7 +23,7 @@ def predict_from_model():
     db_cursor.execute("SELECT date_registered, price FROM dashboard_dolarprice ORDER BY date_registered DESC")
     train_data = db_cursor.fetchall()
     df_train = pd.DataFrame(train_data, columns=['date_registered', 'price'])
-    df_temp= df[['price']].copy()
+    df_temp= df_train[['price']].copy()
     p = 5
     for i in range(p):
         dftemp[f'price{i+1}'] = df_temp.price.shift(i+1)
@@ -31,7 +31,8 @@ def predict_from_model():
     y = df_temp.price
     model = DecisionTreeRegressor()
     model.fit(X, y)
-
+    #fim dessa parte
+    
     db_cursor.execute("SELECT date_registered, price FROM dashboard_dolarprice ORDER BY date_registered DESC LIMIT 60")
     data = db_cursor.fetchall()
     df_true = pd.DataFrame(data, columns=['date_registered', 'price'])
